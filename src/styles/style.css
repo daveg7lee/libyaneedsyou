@@ -22,15 +22,3 @@ html {
   bottom: 0px;
   background-color: #000;
 }
-
-.container {
-  scroll-snap-type: y proximity;
-  height: 100vh;
-  overflow-y: scroll;
-}
-section {
-  scroll-snap-align: start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

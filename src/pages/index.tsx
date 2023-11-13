@@ -18,6 +18,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Tweet } from "react-twitter-widgets";
 import Marquee from "react-fast-marquee";
 import SocialButton from "../components/SocialButton";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const twitterId = [
   "1711653049343660319",
@@ -27,16 +28,48 @@ const twitterId = [
   "1703134192291180576",
 ];
 
-declare global {
-  interface Window {
-    paypal: any;
-  }
-}
-
 const IndexPage: React.FC<PageProps> = () => {
+  const [isKorea, setIsKorea] = React.useState(false);
+
+  const KOREA_BOUNDS = {
+    lat: { min: 33, max: 38 },
+    lng: { min: 125, max: 131 },
+  };
+
+  // 사용자의 위치가 한국 내에 있는지 확인하는 함수
+  function isInKorea(lat: number, lng: number) {
+    return (
+      lat >= KOREA_BOUNDS.lat.min &&
+      lat <= KOREA_BOUNDS.lat.max &&
+      lng >= KOREA_BOUNDS.lng.min &&
+      lng <= KOREA_BOUNDS.lng.max
+    );
+  }
+
+  // 위치 정보를 얻는 함수
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        if (isInKorea(latitude, longitude)) {
+          setIsKorea(true);
+        } else {
+          setIsKorea(false);
+        }
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  // 위치 정보 얻기 함수 호출
+  React.useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
-    <div className="container">
-      <Box minH="100vh" as="section">
+    <>
+      <Box minH="100vh">
         <Box position="relative" className="mainImage">
           <Box
             position="absolute"
@@ -62,27 +95,17 @@ const IndexPage: React.FC<PageProps> = () => {
                 You can help support those in <br /> desperate need with just 1
                 click.
               </Text>
-              {window.paypal &&
-                window.paypal
-                  .Buttons({
-                    style: {
-                      layout: "vertical",
-                      color: "blue",
-                      shape: "rect",
-                      label: "paypal",
-                    },
-                  })
-                  .render("#paypal-button-container")}
+              <Button
+                as="a"
+                href="https://paypal.me/whitestoneneed?country.x=KR&locale.x=ko_KR"
+              >
+                Donate Now
+              </Button>
             </VStack>
           </Box>
         </Box>
       </Box>
-      <SimpleGrid
-        minH="100vh"
-        p={["20px", "100px"]}
-        columns={[1, 1, 2]}
-        as="section"
-      >
+      <SimpleGrid minH="100vh" p={["20px", "100px"]} columns={[1, 1, 2]}>
         <Box>
           <Text
             color="black"
@@ -103,147 +126,145 @@ const IndexPage: React.FC<PageProps> = () => {
           objectFit="scale-down"
         />
       </SimpleGrid>
-      <section>
-        <Box
-          minH="15vh"
-          bgColor="black"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+
+      <Box
+        minH="15vh"
+        bgColor="black"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text
+          textAlign="center"
+          color="white"
+          fontSize={["25", "50px"]}
+          fontWeight="bold"
         >
-          <Text
-            textAlign="center"
-            color="white"
-            fontSize={["25", "50px"]}
-            fontWeight="bold"
-          >
-            What happened in Libya?
-          </Text>
+          What happened in Libya?
+        </Text>
+      </Box>
+      <SimpleGrid
+        minH="85vh"
+        p="20px"
+        display="grid"
+        columns={[1, 1, 3]}
+        gap="40px"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
+          <StaticImage
+            src="../images/libyadam.webp"
+            alt="Dam image"
+            height={400}
+            width={480}
+          />
+          <VStack p="30px" alignItems="flex-start">
+            <Text fontWeight="semibold" color="black" fontSize="20px">
+              Storm Daniel bursts 2 dams
+            </Text>
+            <Text fontWeight="medium" color="grey" fontSize="15px">
+              The deadliest Mediterranean tropical cyclone in recorded history
+              shatters the 50-year-old dams.
+            </Text>
+            <Button colorScheme="blackAlpha">Read More</Button>
+          </VStack>
         </Box>
-        <SimpleGrid
-          minH="85vh"
-          p="20px"
-          display="grid"
-          columns={[1, 1, 3]}
-          gap="40px"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-            <StaticImage
-              src="../images/libyadam.webp"
-              alt="Dam image"
-              height={400}
-              width={480}
-            />
-            <VStack p="30px" alignItems="flex-start">
-              <Text fontWeight="semibold" color="black" fontSize="20px">
-                Storm Daniel bursts 2 dams
-              </Text>
-              <Text fontWeight="medium" color="grey" fontSize="15px">
-                The deadliest Mediterranean tropical cyclone in recorded history
-                shatters the 50-year-old dams.
-              </Text>
-              <Button colorScheme="blackAlpha">Read More</Button>
-            </VStack>
-          </Box>
-          <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-            <StaticImage
-              src="../images/flood.webp"
-              alt="Flood image"
-              height={400}
-              width={480}
-            />
-            <VStack p="30px" alignItems="flex-start">
-              <Text fontWeight="semibold" color="black" fontSize="20px">
-                Flood wipes Derna
-              </Text>
-              <Text fontWeight="medium" color="grey" fontSize="15px">
-                A quarter of Derna is gone, and thousands are forced to leave.
-              </Text>
-              <Button colorScheme="blackAlpha">Read More</Button>
-            </VStack>
-          </Box>
-          <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-            <StaticImage
-              src="../images/aftermath.webp"
-              alt="Aftermath image"
-              height={400}
-              width={480}
-            />
-            <VStack p="30px" alignItems="flex-start">
-              <Text fontWeight="semibold" color="black" fontSize="20px">
-                Aftermath
-              </Text>
-              <Text fontWeight="medium" color="grey" fontSize="15px">
-                11,000 people died, and 30,000 are missing. Suffering continues.
-              </Text>
-              <Button colorScheme="blackAlpha">Read More</Button>
-            </VStack>
-          </Box>
-        </SimpleGrid>
-      </section>
-      <section>
-        <Box
-          minH="15vh"
-          bgColor="black"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Text
-            textAlign="center"
-            color="white"
-            fontSize={["25", "50px"]}
-            fontWeight="bold"
-          >
-            Latest News
-          </Text>
+        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
+          <StaticImage
+            src="../images/flood.webp"
+            alt="Flood image"
+            height={400}
+            width={480}
+          />
+          <VStack p="30px" alignItems="flex-start">
+            <Text fontWeight="semibold" color="black" fontSize="20px">
+              Flood wipes Derna
+            </Text>
+            <Text fontWeight="medium" color="grey" fontSize="15px">
+              A quarter of Derna is gone, and thousands are forced to leave.
+            </Text>
+            <Button colorScheme="blackAlpha">Read More</Button>
+          </VStack>
         </Box>
-        <HStack minH="85vh" py="20px">
-          <Marquee>
-            {twitterId.map((id) => (
-              <Box mx="6px">
-                <Tweet tweetId={id} />
-              </Box>
-            ))}
-          </Marquee>
-        </HStack>
-        <Box
-          bg={useColorModeValue("gray.50", "gray.900")}
-          color={useColorModeValue("gray.700", "gray.200")}
-        >
-          <Container
-            as={Stack}
-            maxW={"6xl"}
-            py={4}
-            direction={{ base: "column", md: "row" }}
-            spacing={4}
-            justify={{ base: "center", md: "space-between" }}
-            align={{ base: "center", md: "center" }}
-          >
-            <Text>© 2023 White Stone. All rights reserved</Text>
-            <Stack direction={"row"} spacing={6}>
-              <SocialButton
-                label={"Twitter"}
-                href={"https://twitter.com/Whitestone_need"}
-              >
-                <FaTwitter />
-              </SocialButton>
-              <SocialButton label={"YouTube"} href={"#"}>
-                <FaYoutube />
-              </SocialButton>
-              <SocialButton
-                label={"Instagram"}
-                href={"https://www.instagram.com/whitestone_needu/"}
-              >
-                <FaInstagram />
-              </SocialButton>
-            </Stack>
-          </Container>
+        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
+          <StaticImage
+            src="../images/aftermath.webp"
+            alt="Aftermath image"
+            height={400}
+            width={480}
+          />
+          <VStack p="30px" alignItems="flex-start">
+            <Text fontWeight="semibold" color="black" fontSize="20px">
+              Aftermath
+            </Text>
+            <Text fontWeight="medium" color="grey" fontSize="15px">
+              11,000 people died, and 30,000 are missing. Suffering continues.
+            </Text>
+            <Button colorScheme="blackAlpha">Read More</Button>
+          </VStack>
         </Box>
-      </section>
-    </div>
+      </SimpleGrid>
+
+      <Box
+        minH="15vh"
+        bgColor="black"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text
+          textAlign="center"
+          color="white"
+          fontSize={["25", "50px"]}
+          fontWeight="bold"
+        >
+          Latest News
+        </Text>
+      </Box>
+      <HStack minH="85vh" py="20px">
+        <Marquee>
+          {twitterId.map((id) => (
+            <Box mx="6px">
+              <Tweet tweetId={id} />
+            </Box>
+          ))}
+        </Marquee>
+      </HStack>
+      <Box
+        bg={useColorModeValue("gray.50", "gray.900")}
+        color={useColorModeValue("gray.700", "gray.200")}
+      >
+        <Container
+          as={Stack}
+          maxW={"6xl"}
+          py={4}
+          direction={{ base: "column", md: "row" }}
+          spacing={4}
+          justify={{ base: "center", md: "space-between" }}
+          align={{ base: "center", md: "center" }}
+        >
+          <Text>© 2023 White Stone. All rights reserved</Text>
+          <Stack direction={"row"} spacing={6}>
+            <SocialButton
+              label={"Twitter"}
+              href={"https://twitter.com/Whitestone_need"}
+            >
+              <FaTwitter />
+            </SocialButton>
+            <SocialButton label={"YouTube"} href={"#"}>
+              <FaYoutube />
+            </SocialButton>
+            <SocialButton
+              label={"Instagram"}
+              href={"https://www.instagram.com/whitestone_needu/"}
+            >
+              <FaInstagram />
+            </SocialButton>
+          </Stack>
+        </Container>
+      </Box>
+    </>
   );
 };
 
