@@ -12,6 +12,7 @@ import {
   Text,
   VStack,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { StaticImage } from "gatsby-plugin-image";
@@ -29,6 +30,7 @@ const twitterId = [
 ];
 
 const IndexPage: React.FC<PageProps> = () => {
+  const toast = useToast();
   const [isKorea, setIsKorea] = React.useState(false);
 
   const KOREA_BOUNDS = {
@@ -62,6 +64,14 @@ const IndexPage: React.FC<PageProps> = () => {
     }
   }
 
+  const copyToClipBoard = async () => {
+    await navigator.clipboard.writeText("3333-28-7320488");
+    toast({
+      status: "success",
+      title: "클립보드에 복사되었습니다!",
+    });
+  };
+
   // 위치 정보 얻기 함수 호출
   React.useEffect(() => {
     getLocation();
@@ -92,15 +102,28 @@ const IndexPage: React.FC<PageProps> = () => {
                 fontSize="22px"
                 fontWeight="semibold"
               >
-                You can help support those in <br /> desperate need with just 1
-                click.
+                한 번의 클릭으로 필요한 이들을 지원할 수 있습니다.
               </Text>
-              <Button
-                as="a"
-                href="https://paypal.me/whitestoneneed?country.x=KR&locale.x=ko_KR"
-              >
-                Donate Now
+              <Button as="a" href="https://toss.me/whitestone" target="_blank">
+                토스로 기부하기
               </Button>
+              <Text
+                textAlign="center"
+                color="white"
+                fontSize="16px"
+                fontWeight="semibold"
+              >
+                또는
+              </Text>
+              <Text
+                textAlign="center"
+                color="white"
+                fontSize="16px"
+                fontWeight="semibold"
+                onClick={() => copyToClipBoard()}
+              >
+                카카오뱅크: 3333-28-7320488
+              </Text>
             </VStack>
           </Box>
         </Box>
@@ -113,11 +136,11 @@ const IndexPage: React.FC<PageProps> = () => {
             fontWeight="bold"
             lineHeight="60px"
           >
-            A country home to the Sahara Desert, Libya
+            사하라 사막의 고향, 리비아
           </Text>
           <Text mt="20px" color="grey" fontSize="20px">
-            Located in North Africa, Libya is a country with distinct cultures
-            and is known for its ancient Greek and Roman ruins.
+            북아프리카에 위치한 리비아는 고대 그리스와 로마 유적지로 알려져
+            있으며 독특한 문화를 지닌 나라입니다.
           </Text>
         </Box>
         <StaticImage
@@ -140,7 +163,7 @@ const IndexPage: React.FC<PageProps> = () => {
           fontSize={["25", "50px"]}
           fontWeight="bold"
         >
-          What happened in Libya?
+          리비아에서 무슨 일이 일어났나요?
         </Text>
       </Box>
       <SimpleGrid
@@ -161,11 +184,10 @@ const IndexPage: React.FC<PageProps> = () => {
           />
           <VStack p="30px" alignItems="flex-start">
             <Text fontWeight="semibold" color="black" fontSize="20px">
-              Storm Daniel bursts 2 dams
+              태풍 다니엘에 의해 2개의 댐 붕괴
             </Text>
             <Text fontWeight="medium" color="grey" fontSize="15px">
-              The deadliest Mediterranean tropical cyclone in recorded history
-              shatters the 50-year-old dams.
+              50년 역사상 큰 태픙으로 인해 2개의 댐이 파괴 되었고..
             </Text>
             <Button colorScheme="blackAlpha">Read More</Button>
           </VStack>
@@ -179,10 +201,10 @@ const IndexPage: React.FC<PageProps> = () => {
           />
           <VStack p="30px" alignItems="flex-start">
             <Text fontWeight="semibold" color="black" fontSize="20px">
-              Flood wipes Derna
+              홍수가 데르나를 뒤덮었다
             </Text>
             <Text fontWeight="medium" color="grey" fontSize="15px">
-              A quarter of Derna is gone, and thousands are forced to leave.
+              데르나의 지역 중 25%가 지도에서 사라지고 수천 명이...
             </Text>
             <Button colorScheme="blackAlpha">Read More</Button>
           </VStack>
@@ -196,10 +218,11 @@ const IndexPage: React.FC<PageProps> = () => {
           />
           <VStack p="30px" alignItems="flex-start">
             <Text fontWeight="semibold" color="black" fontSize="20px">
-              Aftermath
+              현재상황
             </Text>
             <Text fontWeight="medium" color="grey" fontSize="15px">
-              11,000 people died, and 30,000 are missing. Suffering continues.
+              11300명 이상의 사람들이 사망한 것으로 확인됐으며, 추가 30000명이
+              실종되었습니다.
             </Text>
             <Button colorScheme="blackAlpha">Read More</Button>
           </VStack>
@@ -219,7 +242,7 @@ const IndexPage: React.FC<PageProps> = () => {
           fontSize={["25", "50px"]}
           fontWeight="bold"
         >
-          Latest News
+          최신 뉴스
         </Text>
       </Box>
       <HStack minH="85vh" py="20px">
