@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../styles/style.css";
 import "../styles/reset.css";
-import { Script, type PageProps } from "gatsby";
+import { type PageProps } from "gatsby";
 import {
   Box,
   Button,
@@ -19,7 +19,6 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Tweet } from "react-twitter-widgets";
 import Marquee from "react-fast-marquee";
 import SocialButton from "../components/SocialButton";
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const twitterId = [
   "1711653049343660319",
