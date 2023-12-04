@@ -2,290 +2,68 @@ import * as React from "react";
 import "../styles/style.css";
 import "../styles/reset.css";
 import { type PageProps } from "gatsby";
-import {
-  Box,
-  Button,
-  Container,
-  HStack,
-  SimpleGrid,
-  Stack,
-  Text,
-  VStack,
-  useColorModeValue,
-  useToast,
-} from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import { StaticImage } from "gatsby-plugin-image";
-import { Tweet } from "react-twitter-widgets";
-import Marquee from "react-fast-marquee";
-import SocialButton from "../components/SocialButton";
-
-const twitterId = [
-  "1711653049343660319",
-  "1709149943946989699",
-  "1702382183820800253",
-  "1704200342982848643",
-  "1703134192291180576",
-];
+import Header from "../components/Header";
+import MainWithImage from "../components/MainWithImage";
+import Seperator from "../components/Seperator";
+import TotalAmount from "../components/TotalAmount";
+import Sponsors from "../components/Sponsors";
+import LibyaInfo from "../components/LibyaInfo";
+import LibyaStatus from "../components/LibyaStatus";
+import Footer from "../components/Footer";
+import TwitterNews from "../components/TwitterNews";
 
 const IndexPage: React.FC<PageProps> = () => {
-  const toast = useToast();
-  const [isKorea, setIsKorea] = React.useState(false);
+  // const [isKorea, setIsKorea] = React.useState(false);
 
-  const KOREA_BOUNDS = {
-    lat: { min: 33, max: 38 },
-    lng: { min: 125, max: 131 },
-  };
+  // const KOREA_BOUNDS = {
+  //   lat: { min: 33, max: 38 },
+  //   lng: { min: 125, max: 131 },
+  // };
 
-  // 사용자의 위치가 한국 내에 있는지 확인하는 함수
-  function isInKorea(lat: number, lng: number) {
-    return (
-      lat >= KOREA_BOUNDS.lat.min &&
-      lat <= KOREA_BOUNDS.lat.max &&
-      lng >= KOREA_BOUNDS.lng.min &&
-      lng <= KOREA_BOUNDS.lng.max
-    );
-  }
+  // // 사용자의 위치가 한국 내에 있는지 확인하는 함수
+  // function isInKorea(lat: number, lng: number) {
+  //   return (
+  //     lat >= KOREA_BOUNDS.lat.min &&
+  //     lat <= KOREA_BOUNDS.lat.max &&
+  //     lng >= KOREA_BOUNDS.lng.min &&
+  //     lng <= KOREA_BOUNDS.lng.max
+  //   );
+  // }
 
-  // 위치 정보를 얻는 함수
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        if (isInKorea(latitude, longitude)) {
-          setIsKorea(true);
-        } else {
-          setIsKorea(false);
-        }
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
+  // // 위치 정보를 얻는 함수
+  // function getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       const { latitude, longitude } = position.coords;
+  //       if (isInKorea(latitude, longitude)) {
+  //         setIsKorea(true);
+  //       } else {
+  //         setIsKorea(false);
+  //       }
+  //     });
+  //   } else {
+  //     console.log("Geolocation is not supported by this browser.");
+  //   }
+  // }
 
-  const copyToClipBoard = async () => {
-    await navigator.clipboard.writeText("3333-28-7320488");
-    toast({
-      status: "success",
-      title: "클립보드에 복사되었습니다!",
-    });
-  };
-
-  // 위치 정보 얻기 함수 호출
-  React.useEffect(() => {
-    getLocation();
-  }, []);
+  // // 위치 정보 얻기 함수 호출
+  // React.useEffect(() => {
+  //   getLocation();
+  // }, []);
 
   return (
     <>
-      <Box minH="100vh">
-        <Box position="relative" className="mainImage">
-          <Box
-            position="absolute"
-            left="50%"
-            top="50%"
-            transform="translateX(-50%) translateY(-50%)"
-          >
-            <VStack justifyContent="center" gap="12px">
-              <Text
-                fontSize="65px"
-                color="white"
-                fontWeight="extrabold"
-                textAlign="center"
-              >
-                Libya Needs You.
-              </Text>
-              <Text
-                textAlign="center"
-                color="white"
-                fontSize="22px"
-                fontWeight="semibold"
-              >
-                한 번의 클릭으로 필요한 이들을 지원할 수 있습니다.
-              </Text>
-              <Button as="a" href="https://toss.me/whitestone" target="_blank">
-                토스로 기부하기
-              </Button>
-              <Text
-                textAlign="center"
-                color="white"
-                fontSize="16px"
-                fontWeight="semibold"
-              >
-                또는
-              </Text>
-              <Text
-                textAlign="center"
-                color="white"
-                fontSize="16px"
-                fontWeight="semibold"
-                onClick={() => copyToClipBoard()}
-              >
-                카카오뱅크: 3333-28-7320488
-              </Text>
-            </VStack>
-          </Box>
-        </Box>
-      </Box>
-      <SimpleGrid minH="100vh" p={["20px", "100px"]} columns={[1, 1, 2]}>
-        <Box>
-          <Text
-            color="black"
-            fontSize="50px"
-            fontWeight="bold"
-            lineHeight="60px"
-          >
-            사하라 사막의 고향, 리비아
-          </Text>
-          <Text mt="20px" color="grey" fontSize="20px">
-            북아프리카에 위치한 리비아는 고대 그리스와 로마 유적지로 알려져
-            있으며 독특한 문화를 지닌 나라입니다.
-          </Text>
-        </Box>
-        <StaticImage
-          src="../images/libyamap.webp"
-          alt="Libya Map"
-          objectFit="scale-down"
-        />
-      </SimpleGrid>
-
-      <Box
-        minH="15vh"
-        bgColor="black"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Text
-          textAlign="center"
-          color="white"
-          fontSize={["25", "50px"]}
-          fontWeight="bold"
-        >
-          리비아에서 무슨 일이 일어났나요?
-        </Text>
-      </Box>
-      <SimpleGrid
-        minH="85vh"
-        p="20px"
-        display="grid"
-        columns={[1, 1, 3]}
-        gap="40px"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-          <StaticImage
-            src="../images/libyadam.webp"
-            alt="Dam image"
-            height={400}
-            width={480}
-          />
-          <VStack p="30px" alignItems="flex-start">
-            <Text fontWeight="semibold" color="black" fontSize="20px">
-              태풍 다니엘에 의해 2개의 댐 붕괴
-            </Text>
-            <Text fontWeight="medium" color="grey" fontSize="15px">
-              50년 역사상 큰 태픙으로 인해 2개의 댐이 파괴 되었고..
-            </Text>
-            <Button colorScheme="blackAlpha">Read More</Button>
-          </VStack>
-        </Box>
-        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-          <StaticImage
-            src="../images/flood.webp"
-            alt="Flood image"
-            height={400}
-            width={480}
-          />
-          <VStack p="30px" alignItems="flex-start">
-            <Text fontWeight="semibold" color="black" fontSize="20px">
-              홍수가 데르나를 뒤덮었다
-            </Text>
-            <Text fontWeight="medium" color="grey" fontSize="15px">
-              데르나의 지역 중 25%가 지도에서 사라지고 수천 명이...
-            </Text>
-            <Button colorScheme="blackAlpha">Read More</Button>
-          </VStack>
-        </Box>
-        <Box borderRadius="7px" overflow="hidden" shadow="base" minH="70vh">
-          <StaticImage
-            src="../images/aftermath.webp"
-            alt="Aftermath image"
-            height={400}
-            width={480}
-          />
-          <VStack p="30px" alignItems="flex-start">
-            <Text fontWeight="semibold" color="black" fontSize="20px">
-              현재상황
-            </Text>
-            <Text fontWeight="medium" color="grey" fontSize="15px">
-              11300명 이상의 사람들이 사망한 것으로 확인됐으며, 추가 30000명이
-              실종되었습니다.
-            </Text>
-            <Button colorScheme="blackAlpha">Read More</Button>
-          </VStack>
-        </Box>
-      </SimpleGrid>
-
-      <Box
-        minH="15vh"
-        bgColor="black"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Text
-          textAlign="center"
-          color="white"
-          fontSize={["25", "50px"]}
-          fontWeight="bold"
-        >
-          최신 뉴스
-        </Text>
-      </Box>
-      <HStack minH="85vh" py="20px">
-        <Marquee>
-          {twitterId.map((id) => (
-            <Box mx="6px">
-              <Tweet tweetId={id} />
-            </Box>
-          ))}
-        </Marquee>
-      </HStack>
-      <Box
-        bg={useColorModeValue("gray.50", "gray.900")}
-        color={useColorModeValue("gray.700", "gray.200")}
-      >
-        <Container
-          as={Stack}
-          maxW={"6xl"}
-          py={4}
-          direction={{ base: "column", md: "row" }}
-          spacing={4}
-          justify={{ base: "center", md: "space-between" }}
-          align={{ base: "center", md: "center" }}
-        >
-          <Text>© 2023 White Stone. All rights reserved</Text>
-          <Stack direction={"row"} spacing={6}>
-            <SocialButton
-              label={"Twitter"}
-              href={"https://twitter.com/Whitestone_need"}
-            >
-              <FaTwitter />
-            </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
-              <FaYoutube />
-            </SocialButton>
-            <SocialButton
-              label={"Instagram"}
-              href={"https://www.instagram.com/whitestone_needu/"}
-            >
-              <FaInstagram />
-            </SocialButton>
-          </Stack>
-        </Container>
-      </Box>
+      <Header />
+      <MainWithImage />
+      <Seperator text="지금까지 기부된 금액" />
+      <TotalAmount amount={500000} />
+      <Sponsors />
+      <LibyaInfo />
+      <Seperator text="리비아에서 무슨 일이 일어났나요?" />
+      <LibyaStatus />
+      <Seperator text="최신 뉴스" />
+      <TwitterNews />
+      <Footer />
     </>
   );
 };
