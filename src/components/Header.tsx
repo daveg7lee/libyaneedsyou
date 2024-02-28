@@ -2,14 +2,6 @@ import React from "react";
 import { Box, Image, Link, Text } from "@chakra-ui/react";
 
 export default function Header() {
-  const scrollToBottom = () => {
-    window.scrollTo({
-      left: 0,
-      top: document.body.scrollHeight,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <Box
       as="header"
@@ -45,14 +37,11 @@ export default function Header() {
           <Text color="white" fontWeight="bold" cursor="pointer">
             About
           </Text>
-          <Text
-            color="white"
-            fontWeight="bold"
-            cursor="pointer"
-            onClick={scrollToBottom}
-          >
-            Contact
-          </Text>
+          <Link href="mailto:whitestoneneed@gmail.com">
+            <Text color="white" fontWeight="bold" cursor="pointer">
+              Contact
+            </Text>
+          </Link>
         </Box>
       </Box>
     </Box>

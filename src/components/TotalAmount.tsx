@@ -6,6 +6,30 @@ interface ITotalAmountProps {
 }
 
 export default function TotalAmount({ amount }: ITotalAmountProps) {
+  const currentDate = new Date();
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const formattedDate =
+    monthNames[currentDate.getMonth()] +
+    " " +
+    currentDate.getDate() +
+    " " +
+    currentDate.getFullYear();
+
   return (
     <Center h="50vh">
       <VStack>
@@ -18,7 +42,7 @@ export default function TotalAmount({ amount }: ITotalAmountProps) {
           {amount.toLocaleString()} KRW
         </Text>
         <Text my="16px" color="grey" fontSize="20px">
-          Has been donated as of December 4th, 2023
+          Has been donated as of {formattedDate}
         </Text>
         <Button as="a" href="https://toss.me/whitestone" target="_blank">
           토스로 기부하기
