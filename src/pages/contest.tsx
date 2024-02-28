@@ -29,11 +29,16 @@ export default function Contest() {
           대회 개요
         </Text>
         <Text lineHeight="35px" fontSize="large">
-          대회 주제: 홍수로 인해 피해를 입은 리비아인들을 향한 희망의 메세지
+          2023년 9월 11일 발생한 홍수로 인해 리비아 국민들이 말로 표현할 수 없는
+          큰 피해 를 입었습니다. 6.25전쟁 당시 이웃 나라로부터 많은 도움을 받아
+          어려움을 극복했던 것을 기억하며, 리비아 국민들을 돕고 희망을 전하기
+          위해 이 대회를 개최합니다.
           <br />
-          개최: 주한리비아대사관, WHITESTONE
+          주제: 홍수로 인해 피해를 입은 리비아인들을 향한 희망의 메세지
           <br />
-          참가 대상: 전국 초등부, 중등부, 고등부
+          주최 : WHITESTONE, 주한 리비아 대사관 공동 주최
+          <br />
+          참가 대상 : 전국 초 · 중 · 고 학생 (학교밖 청소년 포함)
         </Text>
         <TableContainer maxW="650px">
           <Table variant="simple">
@@ -64,8 +69,8 @@ export default function Contest() {
         <Text lineHeight="35px" mt="15px" fontSize="large">
           대회 기간: 3/4~3/24
           <br />
-          대회 참여 비용: 5,000원 (전액 후원금으로 사용될 예정) → (초등부 000
-          이름으로 송금)
+          대회 참가비: 5,000원 (참가비는 전액 후원금으로 사용될 예정입니다.)
+          *송금 계좌: 카카오뱅크 3333-28-7320488 (예: “초등부000” 이름으로 송금)
           <br />
           심사 기준: 스피치 실력, 스크립트 내용
           <br />
@@ -109,11 +114,19 @@ export default function Contest() {
             </Tbody>
           </Table>
         </TableContainer>
+        <Text lineHeight="35px" mt="15px" fontSize="large">
+          발표 : 2024년 4월 3일(수) 20:00 [홈페이지 게시 및 개별 이메일 연락]
+          <br />
+          상장 수여 : 2024년 4월 10일(수) [이메일로 영문, 한글 상장 모두 지급
+          예정]
+          <br />
+          문의 : whitestoneneed@gmail.com
+        </Text>
         <Button
           as="a"
           href="https://forms.gle/AeHhzkiQcYBS2UW46"
           target="_blank"
-          mb="30px"
+          my="30px"
         >
           대회 지원하기
         </Button>
