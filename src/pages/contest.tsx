@@ -39,6 +39,13 @@ export default function Contest() {
           주최 : WHITESTONE, 주한 리비아 대사관 공동 주최
           <br />
           참가 대상 : 전국 초 · 중 · 고 학생 (학교밖 청소년 포함)
+          <br />
+          대회 기간: 3/4~3/24
+          <br />
+          대회 참가비: 5,000원 (참가비는 전액 후원금으로 사용될 예정입니다.)
+          *송금 계좌: 카카오뱅크 3333-28-7320488 (예: “초등부000” 이름으로 송금)
+          <br />
+          심사 기준: 스피치 실력, 스크립트 내용
         </Text>
         <TableContainer maxW="650px">
           <Table variant="simple">
@@ -67,13 +74,6 @@ export default function Contest() {
           </Table>
         </TableContainer>
         <Text lineHeight="35px" mt="15px" fontSize="large">
-          대회 기간: 3/4~3/24
-          <br />
-          대회 참가비: 5,000원 (참가비는 전액 후원금으로 사용될 예정입니다.)
-          *송금 계좌: 카카오뱅크 3333-28-7320488 (예: “초등부000” 이름으로 송금)
-          <br />
-          심사 기준: 스피치 실력, 스크립트 내용
-          <br />
           시상 항목
         </Text>
         <TableContainer maxW="650px" mb="30px">
