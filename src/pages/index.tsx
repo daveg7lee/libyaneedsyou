@@ -11,8 +11,20 @@ import LibyaInfo from "../components/LibyaInfo";
 import LibyaStatus from "../components/LibyaStatus";
 import Footer from "../components/Footer";
 import TwitterNews from "../components/TwitterNews";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 const IndexPage: React.FC<PageProps> = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   // const [isKorea, setIsKorea] = React.useState(false);
 
   // const KOREA_BOUNDS = {
@@ -64,6 +76,21 @@ const IndexPage: React.FC<PageProps> = () => {
       <Seperator text="최신 뉴스" />
       <TwitterNews />
       <Footer />
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody></ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

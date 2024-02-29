@@ -1,5 +1,6 @@
 import React from "react";
 import { VStack, Button, Box, Text, useToast } from "@chakra-ui/react";
+import { MdContentCopy } from "react-icons/md";
 
 export default function MainWithImage() {
   const toast = useToast();
@@ -56,8 +57,13 @@ export default function MainWithImage() {
               fontSize="16px"
               fontWeight="semibold"
               onClick={() => copyToClipBoard()}
+              display="flex"
+              alignItems="center"
             >
               카카오뱅크: 3333-28-7320488
+              <Box ml="3px" cursor="pointer">
+                <MdContentCopy />
+              </Box>
             </Text>
           </VStack>
         </Box>
