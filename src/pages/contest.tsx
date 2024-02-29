@@ -23,7 +23,7 @@ export default function Contest() {
       <Header />
       <Box pt="120px" w="full" maxW={"6xl"} h="full" mx="auto" px="10px">
         <Heading mb="25px" fontSize="xxx-large">
-          2024 LIBYANEEDSYOU 전국 청소년 스피치 콘테스트
+          2024 LIBYANEEDSYOU 전국 청소년 영어 스피치 콘테스트
         </Heading>
         <Text fontSize="xx-large" fontWeight={700} my="14px">
           대회 개요
@@ -60,15 +60,15 @@ export default function Contest() {
             <Tbody>
               <Tr>
                 <Td>영상 길이</Td>
-                <Td>1분</Td>
-                <Td>4~5분</Td>
-                <Td>4~5분</Td>
+                <Td>1~2분</Td>
+                <Td>3~4분</Td>
+                <Td>3~4분</Td>
               </Tr>
               <Tr>
                 <Td>스크립트 단어 수</Td>
-                <Td></Td>
-                <Td></Td>
-                <Td></Td>
+                <Td>100단어 이상</Td>
+                <Td>200단어 이상</Td>
+                <Td>200단어 이상</Td>
               </Tr>
             </Tbody>
           </Table>
