@@ -89,9 +89,9 @@ export default function Contest() {
             <Tbody>
               <Tr>
                 <Td>대상</Td>
-                <Td>1명</Td>
-                <Td>1명</Td>
-                <Td>1명</Td>
+                <Td>1명 (10만원)</Td>
+                <Td>1명 (10만원)</Td>
+                <Td>1명 (10만원)</Td>
               </Tr>
               <Tr>
                 <Td>최우수상</Td>
