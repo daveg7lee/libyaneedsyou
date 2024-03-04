@@ -1,5 +1,5 @@
 import React from "react";
-import { VStack, Button, Box, Text, useToast } from "@chakra-ui/react";
+import { VStack, Button, Box, Text, useToast, HStack } from "@chakra-ui/react";
 import { MdContentCopy } from "react-icons/md";
 
 export default function MainWithImage() {
@@ -40,9 +40,20 @@ export default function MainWithImage() {
             >
               한 번의 클릭으로 필요한 이들을 지원할 수 있습니다.
             </Text>
-            <Button as="a" href="https://toss.me/whitestone" target="_blank">
-              토스로 기부하기
-            </Button>
+            <HStack>
+              <Button as="a" href="https://toss.me/whitestone" target="_blank">
+                토스로 기부하기
+              </Button>
+              <Button
+                as="a"
+                href="/contest"
+                bgGradient="linear(to-l, #FFD700, #FFA500)"
+                color="white"
+                _hover={{ bgGradient: "linear(to-l, #FFD700, #FFA500)" }}
+              >
+                대회 참여하기
+              </Button>
+            </HStack>
             <Text
               textAlign="center"
               color="white"
