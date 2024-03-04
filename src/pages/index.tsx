@@ -22,6 +22,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage: React.FC<PageProps> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -63,6 +64,10 @@ const IndexPage: React.FC<PageProps> = () => {
   //   getLocation();
   // }, []);
 
+  React.useEffect(() => {
+    onOpen();
+  }, []);
+
   return (
     <>
       <Header />
@@ -78,17 +83,15 @@ const IndexPage: React.FC<PageProps> = () => {
       <Footer />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody></ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
+        <ModalContent borderRadius="8px" overflow="hidden">
+          <ModalCloseButton zIndex="2" bgColor="gray.100" color="gray.500" />
+          <ModalBody p="0">
+            <StaticImage
+              src="../images/contest_poster.jpeg"
+              alt="Contest Poster"
+              objectFit="scale-down"
+            />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>
