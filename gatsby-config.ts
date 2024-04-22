@@ -35,13 +35,6 @@ const config: GatsbyConfig = {
         portalZIndex: undefined,
       },
     },
-    {
-      resolve: "@vercel/gatsby-plugin-vercel-analytics",
-      options: {
-        // (optional) Prints metrics in the console when true
-        debug: false,
-      },
-    },
   ],
 };
 

@@ -73,7 +73,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Header />
       <MainWithImage />
       <Seperator text="지금까지 기부된 금액" />
-      <TotalAmount amount={400000} />
+      <TotalAmount amount={845105} />
       <Sponsors />
       <LibyaInfo />
       <Seperator text="리비아에서 무슨 일이 일어났나요?" />
