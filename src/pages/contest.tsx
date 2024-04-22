@@ -40,7 +40,7 @@ export default function Contest() {
           <br />
           참가 대상 : 전국 초 · 중 · 고 학생 (학교밖 청소년 포함)
           <br />
-          대회 기간: 3/4~4/21
+          대회 기간: 3/4~5/5 (2주 연장)
           <br />
           대회 참가비: 5,000원 (참가비는 전액 후원금으로 사용될 예정입니다.)
           *송금 계좌: 카카오뱅크 3333-28-7320488 (예: “초등부000” 이름으로 송금)
@@ -115,10 +115,7 @@ export default function Contest() {
           </Table>
         </TableContainer>
         <Text lineHeight="35px" mt="15px" fontSize="large">
-          발표 : 2024년 5월 8일(수) 20:00 [홈페이지 게시 및 개별 이메일 연락]
-          <br />
-          상장 수여 : 2024년 5월 15일(수) [이메일로 영문, 한글 상장 모두 지급
-          예정]
+          발표 : 2024년 5월 25일(토) 20:00 [홈페이지 게시 및 개별 이메일 연락]
           <br />
           문의 : whitestoneneed@gmail.com
         </Text>
