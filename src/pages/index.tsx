@@ -87,7 +87,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <ModalCloseButton zIndex="2" bgColor="gray.100" color="gray.500" />
           <ModalBody p="0">
             <StaticImage
-              src="../images/contest_poster.jpeg"
+              src="../images/contest_result.png"
               alt="Contest Poster"
               objectFit="scale-down"
             />
