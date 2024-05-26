@@ -81,7 +81,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Seperator text="최신 뉴스" />
       <TwitterNews />
       <Footer />
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="3xl">
         <ModalOverlay />
         <ModalContent borderRadius="8px" overflow="hidden">
           <ModalCloseButton zIndex="2" bgColor="gray.100" color="gray.500" />
